@@ -19,12 +19,12 @@ services:
        #- traefik.docker.network=dokploy-network
 
        # Enrutamiento HTTP a HTTPS
-       - traefik.http.routers.next-app.rule=Host(`testing-composer.gameinis.com`)
+       - traefik.http.routers.next-app.rule=Host(`testing.gameinis.com`)
        - traefik.http.routers.next-app.entrypoints=web
        - traefik.http.routers.next-app.middlewares=redirect-to-https@file
 
        # Enrutamiento HTTPS (Seguro)
-       - traefik.http.routers.next-app-secure.rule=Host(`testing-composer.gameinis.com`)
+       - traefik.http.routers.next-app-secure.rule=Host(`testing.gameinis.com`)
        - traefik.http.routers.next-app-secure.entrypoints=websecure
        - traefik.http.routers.next-app-secure.tls.certresolver=letsencrypt
 
