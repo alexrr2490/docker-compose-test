@@ -15,12 +15,25 @@ services:
       - dokploy-network
       #- default
     labels:
-       - traefik.enable=true
+       #- traefik.enable=true
+       #- traefik.http.routers.next-app.rule=Host(`dblearning2.gameinis.com`)
+       #- traefik.http.routers.next-app.entrypoints=websecure
+       #- traefik.http.routers.next-app.tls.certResolver=letsencrypt
+       #- traefik.http.services.next-app.loadbalancer.server.port=3000
+       #- traefik.docker.network=dokploy-network
+
+       # Enrutamiento HTTP a HTTPS
        - traefik.http.routers.next-app.rule=Host(`dblearning2.gameinis.com`)
-       - traefik.http.routers.next-app.entrypoints=websecure
-       - traefik.http.routers.next-app.tls.certResolver=letsencrypt
-       - traefik.http.services.next-app.loadbalancer.server.port=3000
-       - traefik.docker.network=dokploy-network
+       - traefik.http.routers.next-app.entrypoints=web
+       - traefik.http.routers.next-app.middlewares=redirect-to-https@file
+
+       # Enrutamiento HTTPS (Seguro)
+       - traefik.http.routers.next-app-secure.rule=Host(`dblearning2.gameinis.com`)
+       - traefik.http.routers.next-app-secure.entrypoints=websecure
+       - traefik.http.routers.next-app-secure.tls.certresolver=letsencrypt
+
+       # Conexión al puerto interno de tu app
+       - traefik.http.services.next-app-secure.loadbalancer.server.port=3000
 networks:
   dokploy-network:
     external: true
