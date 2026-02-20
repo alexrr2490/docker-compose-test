@@ -19,17 +19,17 @@ services:
        #- traefik.docker.network=dokploy-network
 
        # Enrutamiento HTTP a HTTPS
-       - traefik.http.routers.next-app.rule=Host(`testing.gameinis.com`)
-       - traefik.http.routers.next-app.entrypoints=web
-       - traefik.http.routers.next-app.middlewares=redirect-to-https@file
+       - traefik.http.routers.testing-gameinis.rule=Host(`testing-composer.gameinis.com`)
+       - traefik.http.routers.testing-gameinis.entrypoints=web
+       - traefik.http.routers.testing-gameinis.middlewares=redirect-to-https@file
 
        # Enrutamiento HTTPS (Seguro)
-       - traefik.http.routers.next-app-secure.rule=Host(`testing.gameinis.com`)
-       - traefik.http.routers.next-app-secure.entrypoints=websecure
-       - traefik.http.routers.next-app-secure.tls.certresolver=letsencrypt
+       - traefik.http.routers.testing-gameinis-secure.rule=Host(`testing-composer.gameinis.com`)
+       - traefik.http.routers.testing-gameinis-secure.entrypoints=websecure
+       - traefik.http.routers.testing-gameinis-secure.tls.certresolver=letsencrypt
 
        # Conexión al puerto interno de tu app
-       - traefik.http.services.next-app-secure.loadbalancer.server.port=3000
+       - traefik.http.services.testing-gameinis-secure.loadbalancer.server.port=3000
 networks:
   dokploy-network:
     external: true
