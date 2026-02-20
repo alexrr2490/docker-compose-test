@@ -15,7 +15,7 @@ services:
       - dokploy-network
       #- default
     labels:
-       #- traefik.enable=true
+       - traefik.enable=true
        #- traefik.http.routers.next-app.rule=Host(`dblearning2.gameinis.com`)
        #- traefik.http.routers.next-app.entrypoints=websecure
        #- traefik.http.routers.next-app.tls.certResolver=letsencrypt
